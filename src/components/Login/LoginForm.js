@@ -88,8 +88,8 @@ const LoginForm = () => {
                 </div>
             </form>
            <div className='d-flex  mt-3 justify-content-between'>
-           <small className='fw-bold'>New user? <Link to="/registration">REGISTER HERE!</Link></small>
-           <small className='fw-bold'><Link to="/home">HOME</Link></small>
+           <small style={{ fontSize: "12px" }} className='fw-bold'>New user? <Link to="/registration">REGISTER HERE!</Link></small>
+           <small style={{ fontSize: "12px" }} className='fw-bold'><Link to="/home">HOME</Link></small>
            </div>
         </div>
     );

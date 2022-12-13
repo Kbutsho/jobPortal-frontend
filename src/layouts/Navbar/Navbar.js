@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     return (
-        <div className="bg-primary py-2">
-            <nav className="container navbar navbar-expand-lg bg-dark px-2 " style={{ borderRadius: "50px" }}>
+        <div className="bg-primary py-2 px-4">
+            <nav className="container navbar navbar-expand-lg px-2" style={{ borderRadius: "25px", background: "rgba(0, 0, 0, 0.5)" }}>
             <div className="container-fluid">
                 <Link className="navbar-brand text-white fw-bold" to="/">Job Portal</Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">

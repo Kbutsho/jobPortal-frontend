@@ -41,7 +41,7 @@ const Job = () => {
                 </div>
                     :
                     <div className="container mt-4">
-                        <h4 style={{ borderRadius: "5px", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }} className='pt-3 pb-2 text-uppercase text-center fw-bold text-white bg-primary'>Available job {jobs.length}</h4>
+                        <h4 style={{ borderRadius: "5px", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }} className='pt-4 pb-3 text-uppercase text-center fw-bold text-white bg-primary'>Available job {jobs.length}</h4>
                         <div className="job-area">
                         <input type="text" className='form-control my-4 py-2' placeholder='Search...' value={value} onChange={filterData} style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px"}} />
                             <div className="row">

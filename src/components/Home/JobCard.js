@@ -6,7 +6,7 @@ import { MdReportGmailerrorred } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 
 const JobCard = (props) => {
-    const { name, companyName, salary, vacancy, deadline, _id } = props.jobs
+    const { name, companyName, salary, deadline, _id,jobType } = props.jobs
 
     const history = useNavigate();
     const apply = (id) => {
@@ -27,8 +27,9 @@ const JobCard = (props) => {
                         <h3 className='fw-bold'>{companyName}</h3>
                         <h6 className='fw-bold'>{name}</h6>
                         <h6><span className='fw-bold'>Deadline</span> {deadline.toString().split(':')[0].split('T')[0].split("-").reverse().join('/')}</h6>
+                        <h6><span className='fw-bold'>Job Type </span>{jobType}</h6>
                         <h6><span className='fw-bold'>Salary</span> {salary}</h6>
-                        <h6><span className='fw-bold'>Vacancy</span> {vacancy}</h6>
+                        {/* <h6><span className='fw-bold'>Vacancy</span> {vacancy}</h6> */}
                         <div className='d-flex justify-content-between mt-3'>
                             <span className='btn btn-sm btn-outline-success fw-bold pt-1'>Details <MdReportGmailerrorred size="20" className='mb-1'/></span>
                             <span onClick={() => apply(_id)} className='btn btn-sm btn-outline-primary fw-bold pt-1'>Apply <FaExternalLinkAlt className='mb-1' /></span>

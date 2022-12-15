@@ -1,9 +1,10 @@
 .app {
     font-family: 'Josefin Sans', sans-serif; 
+    background: white;
     /* font-family: 'Roboto', sans-serif;  */
 }
 
-input {
+/* input {
     border-radius: 5px;
     border: 0;
     padding: 4px 6px;
@@ -14,4 +15,4 @@ input {
 
 input:focus {
     outline: 2px solid blue;
-}
+} */

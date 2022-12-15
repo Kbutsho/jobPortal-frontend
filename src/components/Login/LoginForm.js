@@ -59,7 +59,7 @@ const LoginForm = () => {
             <form onSubmit={loginSubmit}>
                 <div className='my-3'>
                     <label className='fw-bold mb-2'>Email</label>
-                    <input style={{ fontSize: "14px" }} className="w-100" type="email" name="email" onChange={handelChange} value={login.email} placeholder="write email" />
+                    <input style={{ fontSize: "14px" }} className="w-100 form-control" type="email" name="email" onChange={handelChange} value={login.email} placeholder="write email" />
                     <div className='mt-2' style={{
                         color: "red", fontSize: "12px", fontWeight: "bold"
                     }}>{login.errors.email ? <span className='mt-3'>{login.errors.email}</span> : null}</div>
@@ -67,7 +67,7 @@ const LoginForm = () => {
                 <div className='my-3'>
                     <label className='fw-bold mb-2'>Password</label>
                     <div className="d-flex align-items-center">
-                        <input style={{ fontSize: "14px" }} className='w-100' type={showPassword ? "text" : "password"} name="password" onChange={handelChange} value={login.password} placeholder="write password" />
+                        <input style={{ fontSize: "14px" }} className='w-100 form-control' type={showPassword ? "text" : "password"} name="password" onChange={handelChange} value={login.password} placeholder="write password" />
                         {
                             showPassword ?
                                 <BiHide onClick={() => showPasswordBtn()} style={{ marginLeft: "-40px", cursor: "pointer" }} size="25" /> :

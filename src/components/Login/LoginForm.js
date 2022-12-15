@@ -6,7 +6,6 @@ import { BiHide, BiShow } from "react-icons/bi";
 import './LoginForm.css';
 import PulseLoader from "react-spinners/PulseLoader";
 
-
 const LoginForm = () => {
     const navigate = useNavigate();
     const [login, setLogin] = useState({
@@ -83,7 +82,7 @@ const LoginForm = () => {
                     <button className={loading ? 'disabled btn btn-primary btn-sm w-100 fw-bold' : 'btn btn-primary btn-sm w-100 fw-bold'} type="submit">Login</button>
 
                     {loading ?
-                          <span style={{ marginTop: "-10px", margin: "-20px 10px 27px 0" }} className='d-flex justify-content-end'><PulseLoader size="5" color="white" /></span>
+                          <span style={{ marginTop: "-10px", margin: "-20px 10px 27px 0" }} className='d-flex justify-content-end'><PulseLoader size="5px" color="white" /></span>
                             :  null
                         }
                 </div>

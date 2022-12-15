@@ -1,12 +1,17 @@
+.app {
+    font-family: 'Josefin Sans', sans-serif; 
+    /* font-family: 'Roboto', sans-serif;  */
+}
 
-input{
+input {
     border-radius: 5px;
     border: 0;
     padding: 4px 6px;
     color: black;
     outline: 1px solid gray;
     transition: 0.3s;
- }
- input:focus{
-     outline: 2px solid blue;
- }
+}
+
+input:focus {
+    outline: 2px solid blue;
+}

@@ -17,19 +17,19 @@ axios.defaults.headers.post['Accept'] = 'application/json';
 
 const App = () => {
   return (
-    <div className='app'>
-      {/* <Navbar></Navbar> */}
-      <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/registration" element={<Registration />} />
-        <Route exact path="/" element={<Home />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </div>
+      <div className='app'>
+        <Routes>
+          <Route path="/home" element={<Home />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/not-found" element={<About />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/registration" element={<Registration />} />
+          <Route exact path="/" element={<Home />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
   );
 };
 

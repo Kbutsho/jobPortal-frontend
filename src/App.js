@@ -15,9 +15,19 @@ import JobDetails from './pages/Job/JobDetails';
 
 // live url https://jobportal-api.onrender.com/api
 // localhost http://localhost:8000/api
-axios.defaults.baseURL = "https://jobportal-api.onrender.com/api";
-axios.defaults.headers.post['Content-Type'] = 'application/json';
-axios.defaults.headers.post['Accept'] = 'application/json';
+//   let token = localStorage.getItem('token')
+//   const config = {
+//     headers: { Authorization: `bearer ${token}` }
+// };
+// const bodyParameters = {
+//    key: "value"
+// };
+
+//let token = localStorage.getItem('token')
+// axios.defaults.baseURL = "http://localhost:8000/api";
+// axios.defaults.headers.post['Content-Type'] = 'application/json';
+// axios.defaults.headers.post['Accept'] = 'application/json';
+// axios.defaults.headers.common = {'Authorization': `bearer ${token}`}
 
 const App = () => {
   return (

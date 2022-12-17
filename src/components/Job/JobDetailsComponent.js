@@ -34,7 +34,7 @@ const JobDetailsComponent = () => {
         }
     }
     return (
-        <div className='container my-5 p-5' style={{minHeight: "60vh", background: "#F5F7FC"}}>
+        <div className='container my-5 py-5 px-3' style={{minHeight: "60vh", background: "#F5F7FC"}}>
             {
                 loading ? <div className="row">
                 <div className="col-md-8 col-12" style={{ minHeight: "60vh" }}>

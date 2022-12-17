@@ -28,17 +28,16 @@ const JobDetailsComponent = () => {
         }
     }
     return (
-        <div className='container my-5 pt-5 px-5' style={{ background: "#F5F7FC", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}>
+        <div className='container my-5 p-5' style={{minHeight: "70vh", background: "#F5F7FC"}}>
             <div className="row">
                 <div className="col-md-8 col-12" style={{ minHeight: "70vh" }}>
-                    <h2 className='fw-bold'>Job Description</h2>
-                    <h4><span className='fw-bold'>{job.companyName}</span> job circular job details.</h4>
-                    <p>{job.companyDetails}. {job.jobDescription}.</p>
-                    <Table striped hover responsive className='table table-striped table-bordered table-hover mb-5' style={{ border: "1px solid black" }}>
+                    <h3><span className='fw-bold'>{job?.companyName}</span> job circular job details.</h3>
+                    <p>{job.companyDetails}. {job?.jobDescription}.</p>
+                    <Table striped hover responsive className='table table-striped table-bordered table-hover' style={{ border: "1px solid black" }}>
                         <thead>
                             <tr>
-                                <th>Job Details</th>
-                                <th>Job ID {job._id}</th>
+                                <th>Job Description</th>
+                                <th>Job ID #{job._id?.slice(-6)}</th>
                             </tr>
                         </thead>
                         <tbody>

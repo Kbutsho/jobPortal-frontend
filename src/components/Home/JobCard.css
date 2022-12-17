@@ -1,7 +1,7 @@
 .box{
     border-radius: 5px;
     margin: 20px 0;
-    background-color: rgb(236, 248, 248);
+    background-color: #F5F7FC;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     min-height: 200px;
 }

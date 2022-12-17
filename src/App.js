@@ -11,6 +11,7 @@ import NotFound from './pages/NotFound/NotFound';
 import Registration from './pages/Registration/Registration';
 import './App.css';
 import Apply from './pages/Job/Apply';
+import JobDetails from './pages/Job/JobDetails';
 
 axios.defaults.baseURL = "https://jobportal-api.onrender.com/api";
 axios.defaults.headers.post['Content-Type'] = 'application/json';
@@ -24,6 +25,7 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
           <Route path="/job/:id/apply" element={<Apply />} />
+          <Route path="/job/:id/details" element={<JobDetails />} />
           <Route path="/not-found" element={<About />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />

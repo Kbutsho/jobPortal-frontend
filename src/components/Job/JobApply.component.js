@@ -36,7 +36,7 @@ const JobApply = () => {
         {uploading ? "uploading" : null}
         {imageURL ? "pdf upload successfully" : null}
         <form onSubmit={applyJob}>
-          <label>Your Name</label>
+          <label>Your Name</label> 
           <input style={{ fontSize: "14px",boxShadow: "inset rgba(0, 0, 0, 0.35) 0px 3px 5px"  }}  type="text" name="name" placeholder='Name' className='form-control my-3' />
           <label>Your Address</label>
           <input style={{ fontSize: "14px",boxShadow: "inset rgba(0, 0, 0, 0.35) 0px 3px 5px"  }}  type="text" name="address" placeholder='Address' className='form-control my-3' />

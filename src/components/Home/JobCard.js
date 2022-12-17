@@ -4,14 +4,21 @@ import brand from '../../assets/logo.png';
 import { FaExternalLinkAlt } from 'react-icons/fa';
 import { MdReportGmailerrorred } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 
 const JobCard = (props) => {
     const { name, companyName, salary, deadline, _id,jobType } = props.jobs
 
     const history = useNavigate();
     const apply = (id) => {
-        const url = `/job/${id}/apply`;
+        const candidate = localStorage.getItem('role');
+        if(candidate === 'candidate'){
+            const url = `/job/${id}/apply`;
         history(url);
+        }else{
+            swal("warning", "Login as candidate!", "error")
+            history('/login');
+        }
     } 
     const details = (id) => {
         const url = `/job/${id}/details`;
@@ -34,8 +41,8 @@ const JobCard = (props) => {
                         <h6><span className='fw-bold'>Salary</span> {salary}</h6>
                         {/* <h6><span className='fw-bold'>Vacancy</span> {vacancy}</h6> */}
                         <div className='d-flex justify-content-between mt-3'>
-                            <span onClick={() => details(_id)}  className='btn btn-sm btn-outline-success fw-bold pt-1'>Details <MdReportGmailerrorred size="20" className='mb-1'/></span>
-                            <span onClick={() => apply(_id)} className='btn btn-sm btn-outline-primary fw-bold pt-1'>Apply <FaExternalLinkAlt className='mb-1' /></span>
+                            <span onClick={() => details(_id)}  className='btn btn-sm btn-info text-white fw-bold pt-2 px-3'>Details <MdReportGmailerrorred size="20" className='mb-1'/></span>
+                            <span onClick={() => apply(_id)} className='btn btn-sm btn-primary fw-bold pt-2 px-3'>Apply <FaExternalLinkAlt className='mb-1' /></span>
                         </div>
                     </div>
                 </div>

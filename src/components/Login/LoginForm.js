@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { BiHide, BiShow } from "react-icons/bi";
 import './LoginForm.css';
 import PulseLoader from "react-spinners/PulseLoader";
+import { HiUserGroup } from 'react-icons/hi';
 
 const LoginForm = () => {
     const navigate = useNavigate();
@@ -54,12 +55,13 @@ const LoginForm = () => {
         setShowPassword(!showPassword);
     }
     return (
-        <div className='form' style={loading ? { background: "rgba(0, 0, 0, 0.1)" } : { background: "white" }}>
-            <h3 className='fw-bold text-dark mb-3 text-center'>LOGIN</h3>
+            <div className='form' style={loading ? { background: "#F5F7FC" } : { background: "rgba(0, 0, 0, 0.1)" }}>
+            <p className='text-center '><HiUserGroup size="60px" className='text-primary p-3' style={{boxShadow: "inset rgba(0, 0, 0, 0.35) 0px 3px 5px", background: "white", borderRadius: "100%"}}/></p>
+            <h4 className='fw-bold text-dark mb-3 text-center'>LOGIN</h4>
             <form onSubmit={loginSubmit}>
                 <div className='my-3'>
                     <label className='fw-bold mb-2'>Email</label>
-                    <input style={{ fontSize: "14px" }} className="w-100 form-control" type="email" name="email" onChange={handelChange} value={login.email} placeholder="write email" />
+                    <input style={{ fontSize: "14px",boxShadow: "inset rgba(0, 0, 0, 0.35) 0px 3px 5px"  }} className="w-100 form-control" type="email" name="email" onChange={handelChange} value={login.email} placeholder="write email" />
                     <div className='mt-2' style={{
                         color: "red", fontSize: "12px", fontWeight: "bold"
                     }}>{login.errors.email ? <span className='mt-3'>{login.errors.email}</span> : null}</div>
@@ -67,7 +69,7 @@ const LoginForm = () => {
                 <div className='my-3'>
                     <label className='fw-bold mb-2'>Password</label>
                     <div className="d-flex align-items-center">
-                        <input style={{ fontSize: "14px" }} className='w-100 form-control' type={showPassword ? "text" : "password"} name="password" onChange={handelChange} value={login.password} placeholder="write password" />
+                        <input style={{ fontSize: "14px",boxShadow: "inset rgba(0, 0, 0, 0.35) 0px 3px 5px" }} className='w-100 form-control' type={showPassword ? "text" : "password"} name="password" onChange={handelChange} value={login.password} placeholder="write password" />
                         {
                             showPassword ?
                                 <BiHide onClick={() => showPasswordBtn()} style={{ marginLeft: "-40px", cursor: "pointer" }} size="25" /> :
@@ -82,9 +84,9 @@ const LoginForm = () => {
                     <button className={loading ? 'disabled btn btn-primary btn-sm w-100 fw-bold' : 'btn btn-primary btn-sm w-100 fw-bold'} type="submit">Login</button>
 
                     {loading ?
-                          <span style={{ marginTop: "-10px", margin: "-20px 10px 27px 0" }} className='d-flex justify-content-end'><PulseLoader size="5px" color="white" /></span>
-                            :  null
-                        }
+                        <span style={{ marginTop: "-10px", margin: "-20px 10px 27px 0" }} className='d-flex justify-content-end'><PulseLoader size="5px" color="white" /></span>
+                        : null
+                    }
                 </div>
             </form>
             <div className='d-flex mt-3 justify-content-between'>

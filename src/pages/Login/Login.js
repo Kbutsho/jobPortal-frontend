@@ -1,9 +1,10 @@
 import React from 'react';
 import LoginForm from '../../components/Login/LoginForm';
+import './Login.css';
 
 const Login = () => {
     return (
-        <div className='d-flex justify-content-center align-items-center' style={{ background: "white", height: "100vh" }}>
+        <div  className='login d-flex justify-content-center align-items-center'>
             <LoginForm></LoginForm>
         </div>
     );

@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import swal from 'sweetalert';
 import { BiTimeFive, BiCurrentLocation } from 'react-icons/bi';
 import { MdOutlineDateRange} from 'react-icons/md';
+import { Table } from 'react-bootstrap';
 
 const JobDetailsComponent = () => {
     const { id } = useParams()
@@ -33,7 +34,7 @@ const JobDetailsComponent = () => {
                     <h2 className='fw-bold'>Job Description</h2>
                     <h4><span className='fw-bold'>{job.companyName}</span> job circular job details.</h4>
                     <p>{job.companyDetails}. {job.jobDescription}.</p>
-                    <table className='table table-striped table-bordered table-hover mb-5' style={{ border: "1px solid black" }}>
+                    <Table striped hover responsive className='table table-striped table-bordered table-hover mb-5' style={{ border: "1px solid black" }}>
                         <thead>
                             <tr>
                                 <th>Job Details</th>
@@ -82,7 +83,7 @@ const JobDetailsComponent = () => {
                                 </td>
                             </tr>
                         </tbody>
-                    </table>
+                    </Table>
                 </div>
                 <div className="col-md-4 col-12" style={{ minHeight: "70vh" }}>
 

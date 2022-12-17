@@ -6,7 +6,9 @@ const JobDetails = () => {
     return (
         <div>
             <Navbar></Navbar>
-            <JobDetailsComponent></JobDetailsComponent>
+            <div className="container">
+                <JobDetailsComponent></JobDetailsComponent>
+            </div>
         </div>
     );
 };

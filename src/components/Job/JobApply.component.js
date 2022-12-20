@@ -41,7 +41,7 @@ const JobApply = () => {
         formData.append("name", info.name)
         formData.append("address", info.name)
         formData.append("resume", file)
-        await axios.post(`http://localhost:8000/api/jobs/${id}/apply`, formData)
+        await axios.post(`https://jobportal-api.onrender.com/api/jobs/${id}/apply`, formData)
           .then(res => {
             console.log(res);
             if (res.data.error) {

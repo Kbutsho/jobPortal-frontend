@@ -12,7 +12,7 @@ const Test = () => {
         const formData = new FormData()
         formData.append('resume', profileImg)
         console.log(formData.values());
-        axios.post("http://localhost:8000/api/jobs/upload", formData, {
+        axios.post("https://jobportal-api.onrender.com/api/jobs/upload", formData, {
         }).then(res => {
             console.log(res)
         })

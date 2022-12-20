@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 const CandidateDashboard = () => {
     const [file, setFile] = useState()
     useEffect(() => {
-        axios.get('https://jobportal-api.onrender.com/api/jobs/application')
+        axios.get('http://localhost:8000/api/jobs/application')
             .then(res => {
                 setFile(res.data.data)
             })

@@ -38,11 +38,11 @@ const JobApply = () => {
     formData.append('address', info.address)
     formData.append("resume", resume);
     // console.log(formData)
-    axios.post("https://jobportal-api.onrender.com/api/jobs/upload", formData, {
+    axios.post("http://localhost:8000/api/jobs/upload", formData, {
     }).then(res => {
       console.log(res)
     })
-    // axios.post(`https://jobportal-api.onrender.com/api/jobs/upload`, formData)
+    // axios.post(`http://localhost:8000/api/jobs/upload`, formData)
     //      .then(res=>{
     //     console.log(res.data);
     //      })
@@ -62,7 +62,7 @@ const JobApply = () => {
   //         "address": "narail"
   //       }
   //       console.log(formData)
-  //       await axios.post(`https://jobportal-api.onrender.com/api/jobs/upload`,data)
+  //       await axios.post(`http://localhost:8000/api/jobs/upload`,data)
   //       .then(res=>{
   //         console.log(res.data);
   //       }).catch((err)=>{

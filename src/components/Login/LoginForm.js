@@ -47,6 +47,7 @@ const LoginForm = () => {
                 navigate('/home');
             }
         } catch (error) {
+            setLoading(false);
             swal("warning", error.message, "error");
         }
     }

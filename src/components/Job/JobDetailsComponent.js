@@ -25,7 +25,7 @@ const JobDetailsComponent = () => {
     const getJobDetails = async () => {
         try {
             setLoading(!loading);
-            await axios.get(`https://jobportal-api.onrender.com/api/jobs/${id}`)
+            await axios.get(`http://localhost:8000/api/jobs/${id}`)
                 .then(res => {
                     if (res.data.error) {
                         setLoading(true);

@@ -1,9 +1,28 @@
-import React from 'react';
+/* eslint-disable jsx-a11y/iframe-has-title */
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 
 const CandidateDashboard = () => {
+    const [file, setFile] = useState()
+    useEffect(() => {
+        axios.get('https://jobportal-api.onrender.com/api/jobs/application')
+            .then(res => {
+                setFile(res.data.data)
+            })
+    })
     return (
         <div>
-            candidate dash board
+            {
+                file?.map(resume =>
+                    <div key={resume._id}>
+                       
+                        <div>
+                        <iframe src={resume.resume} frameborder="0" style={{ width: "100%", height: "100vh" }}/>
+                        </div>
+                    </div>
+                )
+
+            }
         </div>
     );
 };

@@ -1,48 +1,126 @@
 import axios from 'axios';
-import React, { useRef, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import ReactToPrint from 'react-to-print';
+import React, { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import swal from 'sweetalert';
+import './apply.css';
 
 const JobApply = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
-  const [uploading, setUploading] = useState(false)
-  const [imageURL, setImageURL] = useState()
-  const imageUpload = (e) => {
-    setUploading(!uploading)
-    const imgFile = e.target.files[0];
-    let imageData = new FormData();
-    imageData.set("key", "0bdc42b3cf235e6981d19573c2c5875f");
-    imageData.append("image", imgFile);
-    axios.post("https://api.imgbb.com/1/upload", imageData)
-      .then((res) => {
-        setUploading(false)
-        setImageURL(res.data.data.display_url)
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const [info, setInfo] = useState({
+    name: '',
+    address: '',
+    errors: []
+  })
+  const [file, setFile] = useState()
+  const handelInfo = (e) => {
+    e.preventDefault();
+    setInfo({ ...info, [e.target.name]: e.target.value });
   }
-  const applyJob = (event) => {
+  const handelFile = (e) => {
+    e.preventDefault();
+    if (e.target.files[0]) {
+      const fileItem = (e.target.files[0].name).split('.');
+      const extension = fileItem[fileItem.length - 1];
+      if (extension === "pdf" || extension === "docx") {
+        setFile(e.target.files[0]);
+      } else {
+        swal("warning", "upload a pdf or docx", "error")
+      }
+    } else {
+      swal("warning", "select a file", "error")
+    }
+  }
+  const submit = async (event) => {
     event.preventDefault();
-    axios.post(`https://jobportal-api.onrender.com/api/${id}/apply`
-    ).then(res => {
-      console.log(res.data)
-    })
+    if (file) {
+      try {
+        let formData = new FormData();
+        formData.append("name", info.name)
+        formData.append("address", info.name)
+        formData.append("resume", file)
+        await axios.post(`https://jobportal-api.onrender.com/api/jobs/${id}/apply`, formData)
+          .then(res => {
+            console.log(res);
+            if (res.data.error) {
+              if (res.data.error === 'you have already applied!') {
+                swal("warning", res.data.error, "error")
+              } else if (res.data.error === 'deadline is over!') {
+                swal("warning", res.data.error, "error")
+              }
+              else {
+                swal("Application not submit!", res.data.message, "error")
+                setInfo({ ...info, errors: res.data.error });
+              }
+            } else if (res.data.data) {
+              setInfo({
+                errors: ''
+              })
+              navigate('/dashboard')
+            }
+          }).catch((err) => {
+            swal("warning", err.message, "error")
+          })
+      } catch (error) {
+        console.log(error)
+        swal("warning", error.message, "error")
+      }
+    } else {
+      swal("warning", "upload your resume/cv", "error")
+    }
   }
   return (
-    <div className='d-flex justify-content-center align-items-center' style={{ minHeight: "85vh" }}>
-      <div style={{ width: "300px", background: "rgba(0, 0, 0, 0.1)",  boxShadow:  "rgba(0, 0, 0, 0.35) 0px 5px 15px" }} className="p-4 my-5">
-        <h4 className='my-4 fw-bold text-center'>Apply Here</h4>
-        {uploading ? "uploading" : null}
-        {imageURL ? "pdf upload successfully" : null}
-        <form onSubmit={applyJob}>
-          <label>Your Name</label> 
-          <input style={{ fontSize: "14px",boxShadow: "inset rgba(0, 0, 0, 0.35) 0px 3px 5px"  }}  type="text" name="name" placeholder='Name' className='form-control my-3' />
-          <label>Your Address</label>
-          <input style={{ fontSize: "14px",boxShadow: "inset rgba(0, 0, 0, 0.35) 0px 3px 5px"  }}  type="text" name="address" placeholder='Address' className='form-control my-3' />
-          <label>Your Resume</label>
-          <input style={{ fontSize: "14px",boxShadow: "inset rgba(0, 0, 0, 0.35) 0px 3px 5px"  }}  type="file" onChange={imageUpload} placeholder="Resume" className='form-control my-3' />
-          {imageURL ? <button type='submit' className='btn btn-primary w-100'>submit</button> : <button disabled className='btn btn-primary w-100' type='submit'>submit</button>}
+    <div className='container' style={{ minHeight: "77vh" }}>
+      <div style={{ background: "#F5F7FC", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }} className="p-4 my-5 container">
+        <h4 className=' fw-bold text-white text-center btn-primary py-3 bg-primary my-4' style={{ borderRadius: "5px", boxShadow: "rgba(0, 0, 0, 0.35) 0px 3px 5px" }}>Application for Job ID #{id.slice(-6)}</h4>
+        <form onSubmit={submit}>
+          {
+            file ? <>
+              <div className='row'>
+                <div className='col-6'>
+                  <label className='fw-bold mb-2'>Your Name</label>
+                  <input onChange={handelInfo} type="text" placeholder='Name' name="name" className='form-control mb-3 w-100' />
+                  <div  style={{
+                    color: "red", fontSize: "12px", fontWeight: "bold"
+                  }}>{info.errors.name ? <span>{info.errors.name}</span> : null}</div>
+                </div>
+                <div className='col-6'>
+                  <label className='fw-bold mb-2'>Your Email</label>
+                  <input onChange={handelInfo} type="text" placeholder='Address' name="address" className='form-control mb-3' />
+                  <div  style={{
+                    color: "red", fontSize: "12px", fontWeight: "bold"
+                  }}>{info.errors.address ? <span>{info.errors.address}</span> : null}</div>
+                </div>
+              </div>
+
+              <label className='fw-bold mb-2'>Cover Letter</label> 
+              
+              <textarea rows="7" cols="50" onChange={handelInfo} type="text" placeholder='Cover Letter' name="letter" className='form-control  mb-3' />
+              <div className='mt-1' style={{
+                color: "red", fontSize: "12px", fontWeight: "bold"
+              }}>{info.errors.letter ? <span>{info.errors.letter}</span> : null}</div>
+
+
+
+
+
+
+            </> : null
+          }
+          {
+            file ? null : 
+            
+            
+           <>
+           <label className='fw-bold mb-3'>Upload your Resume or CV Here</label>
+           <input onChange={handelFile} type="file" placeholder='upload your resume' className='form-control mb-3 custom-file-input' />
+           </>
+          }
+          <div className='d-flex justify-content-end'>
+            {
+              file ? <button type='submit' className='btn px-4 btn-primary'>Submit</button> : <button type='submit' className='btn px-4 btn-primary'>Next</button>
+            }
+          </div>
         </form>
       </div>
     </div>

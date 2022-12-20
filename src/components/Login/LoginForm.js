@@ -44,7 +44,7 @@ const LoginForm = () => {
                 localStorage.setItem('id', response.data.data.user.id)
                 localStorage.setItem('userId', response.data.data.user.userId)
                 localStorage.setItem('role', response.data.data.user.role)
-                navigate('/dashboard');
+                navigate('/home');
             }
         } catch (error) {
             swal("warning", error.message, "error");

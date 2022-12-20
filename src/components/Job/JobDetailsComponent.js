@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import swal from 'sweetalert';
 import { BiTimeFive, BiCurrentLocation } from 'react-icons/bi';
 import { MdOutlineDateRange, MdWorkOutline } from 'react-icons/md';
@@ -11,13 +11,17 @@ import ReactToPrint from 'react-to-print';
 const JobDetailsComponent = () => {
     const ref = useRef();
     const { id } = useParams()
+    const navigate = useNavigate()
     const [loading, setLoading] = useState(true);
     const [job, setJob] = useState({});
     useEffect(() => {
         getJobDetails()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-    console.log(job);
+    const apply = ()=>{
+        const url = `/job/${id}/apply`;
+        navigate(url);
+    }
     const getJobDetails = async () => {
         try {
             setLoading(!loading);
@@ -90,7 +94,7 @@ const JobDetailsComponent = () => {
                     </div>
                     <div className="col-md-4 col-12 py-5 px-3" style={{ minHeight: "60vh" }}>
 
-                        <button className='btn btn-primary px-5'>Apply Now</button>
+                        <button onClick={apply} className='btn btn-primary px-5'>Apply Now</button>
                         <div className='deadline d-flex align-items-center my-4'>
                             <BiTimeFive size="30px" />
                             <div className='ms-3'>

@@ -12,22 +12,13 @@ import Registration from './pages/Registration/Registration';
 import './App.css';
 import Apply from './pages/Job/Apply';
 import JobDetails from './pages/Job/JobDetails';
+import Test from './pages/Test';
 
-// live url https://jobportal-api.onrender.com/api
-// localhost http://localhost:8000/api
-//   let token = localStorage.getItem('token')
-//   const config = {
-//     headers: { Authorization: `bearer ${token}` }
-// };
-// const bodyParameters = {
-//    key: "value"
-// };
-
-//let token = localStorage.getItem('token')
-// axios.defaults.baseURL = "http://localhost:8000/api";
-// axios.defaults.headers.post['Content-Type'] = 'application/json';
-// axios.defaults.headers.post['Accept'] = 'application/json';
-// axios.defaults.headers.common = {'Authorization': `bearer ${token}`}
+let token = localStorage.getItem('token')
+// axios.defaults.baseURL = "https://jobportal-api.onrender.com/api"; https://jobportal-api.onrender.com/api
+// // axios.defaults.headers.post['Content-Type'] = 'application/json';
+// // axios.defaults.headers.post['Accept'] = 'application/json';
+axios.defaults.headers.common = {'Authorization': `bearer ${token}`}
 
 const App = () => {
   return (
@@ -35,6 +26,7 @@ const App = () => {
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/test" element={<Test />} />
           <Route path="/about" element={<About />} />
           <Route path="/job/:id/apply" element={<Apply />} />
           <Route path="/job/:id/details" element={<JobDetails />} />

@@ -80,7 +80,7 @@ const JobApply = () => {
     <div className='container' style={{ minHeight: "77vh" }}>
       <div style={{ background: "#F5F7FC", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }} className="p-4 my-5 container">
         <h4 className=' fw-bold text-white text-center btn-primary py-3 bg-primary my-4' style={{ borderRadius: "5px", boxShadow: "rgba(0, 0, 0, 0.35) 0px 3px 5px" }}>Application for Job ID #{id.slice(-6)}</h4>
-        <small>{loading ? "uploading... please wait..." : null}</small>
+        <span>{loading ? <p className='fw-bold text-danger text-center p-2' style={{ borderRadius: "5px", boxShadow: "rgba(0, 0, 0, 0.35) 0px 3px 5px" }}>Uploading... please wait</p>: null}</span>
         <form onSubmit={submit}>
           {
             file ? <>
@@ -93,7 +93,7 @@ const JobApply = () => {
                   }}>{info.errors.name ? <span>{info.errors.name}</span> : null}</div>
                 </div>
                 <div className='col-6'>
-                  <label className='fw-bold mb-2'>Your Email</label>
+                  <label className='fw-bold mb-2'>Your Address</label>
                   <input onChange={handelInfo} type="text" placeholder='Address' name="address" className='form-control mb-3' />
                   <div style={{
                     color: "red", fontSize: "12px", fontWeight: "bold"

@@ -6,7 +6,9 @@ import { BiHide, BiShow } from "react-icons/bi";
 import './LoginForm.css';
 import PulseLoader from "react-spinners/PulseLoader";
 import { HiUserGroup } from 'react-icons/hi';
+// import axios from 'axios';
 
+// axios.defaults.headers.post['Content-Type'] = 'application/json';
 const LoginForm = () => {
     const navigate = useNavigate();
     const [login, setLogin] = useState({
@@ -23,12 +25,11 @@ const LoginForm = () => {
     const loginSubmit = async (event) => {
         event.preventDefault();
         try {
-            const data = {
-                email: login.email,
-                password: login.password
-            };
+            let formData = new FormData()
+            formData.append('email', login.email)
+            formData.append('password', login.password)
             setLoading(!loading);
-            const response = await LoginService(data);
+            const response = await LoginService(formData);
             if (response.data.error) {
                 setLoading(false);
                 setLogin({ ...login, errors: response.data.error });
@@ -42,9 +43,9 @@ const LoginForm = () => {
                 localStorage.setItem('token', response.data.data.token)
                 localStorage.setItem('email', response.data.data.user.email)
                 localStorage.setItem('id', response.data.data.user.id)
-                localStorage.setItem('userId', response.data.data.user.userId)
                 localStorage.setItem('role', response.data.data.user.role)
-                navigate('/home');
+                navigate('/dashboard');
+                window.location.reload(false);
             }
         } catch (error) {
             setLoading(false);

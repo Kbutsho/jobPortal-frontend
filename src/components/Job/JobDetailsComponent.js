@@ -19,8 +19,14 @@ const JobDetailsComponent = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     const apply = ()=>{
-        const url = `/job/${id}/apply`;
-        navigate(url);
+        const candidate = localStorage.getItem('role');
+        if (candidate === 'candidate') {
+            const url = `/job/${id}/apply`;
+            navigate(url);
+        } else {
+            swal("warning", "Login as candidate!", "error")
+            navigate('/login');
+        }
     }
     const getJobDetails = async () => {
         try {
@@ -55,7 +61,7 @@ const JobDetailsComponent = () => {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Employer</td>
+                                    <td>Company</td>
                                     <td>{job?.companyName}</td>
                                 </tr>
                                 <tr>

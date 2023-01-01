@@ -12,9 +12,9 @@ const Job = () => {
     const getAllJob = async () => {
         try {
             const response = await GetAllJob();
-            setJobs(response.data.data)
+            setJobs((response.data.data))
         } catch (error) {
-            swal("warning", error.data.error, "error")
+           swal("warning", error.data.error, "error")
         }
     }
     // filtering
@@ -41,9 +41,9 @@ const Job = () => {
                 </div>
                     :
                     <div className="container mt-4">
-                        <h4 style={{ borderRadius: "5px", boxShadow: "rgba(0, 0, 0, 0.35) 0px 3px 5px" }} className='pt-4 pb-3 text-uppercase text-center fw-bold text-white bg-primary'>Available job {jobs.length}</h4>
+                        <h4 style={{ borderRadius: "5px"}} className='pt-4 fw-bold pb-3 text-uppercase text-center  text-white bg-primary'>Available job {jobs.length}</h4>
                         <div className="job-area">
-                        <input type="text" className='form-control mt-4 mb-2 py-3' placeholder='Search by company name, job type, skills, position, salary or location.' value={value} onChange={filterData} style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 5px"}} />
+                        <input type="text" className='form-control mt-4 mb-4 py-3' placeholder='Search by company name, job type, skills, position, salary or location.' value={value} onChange={filterData} style={{ }} />
                             <div className="row">
 
                             {

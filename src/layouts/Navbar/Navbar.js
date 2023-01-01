@@ -27,8 +27,8 @@ const Navbar = () => {
                     <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div className="navbar-nav ms-auto ">
                             <Link style={{ fontSize: "14px" }} className="nav-link text-white fw-bold text-uppercase" to="/home">Home</Link>
-                            <Link style={{ fontSize: "14px" }} className="nav-link text-white fw-bold text-uppercase" to="/contact">Contact</Link>
-                            <Link style={{ fontSize: "14px" }} className="nav-link text-white fw-bold text-uppercase" to="/about">About</Link>
+                            {/* <Link style={{ fontSize: "14px" }} className="nav-link text-white fw-bold text-uppercase" to="/contact">Contact</Link>
+                            <Link style={{ fontSize: "14px" }} className="nav-link text-white fw-bold text-uppercase" to="/about">About</Link> */}
 
                             {isLoggedIn ?
                                 <>

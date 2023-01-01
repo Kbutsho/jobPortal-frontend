@@ -4,13 +4,17 @@ import { useNavigate, useParams } from 'react-router-dom';
 import swal from 'sweetalert';
 import './apply.css';
 
+
+
 const JobApply = () => {
+  //let token = localStorage.getItem('token')
   const navigate = useNavigate();
   const { id } = useParams();
   const [loading, setLoading] = useState(false);
   const [info, setInfo] = useState({
     name: '',
-    address: '',
+    email: '',
+    coverLetter: '',
     errors: []
   })
   const [file, setFile] = useState()
@@ -32,6 +36,7 @@ const JobApply = () => {
       swal("warning", "select a file", "error")
     }
   }
+
   const submit = async (event) => {
     event.preventDefault();
     if (file) {
@@ -39,38 +44,72 @@ const JobApply = () => {
         setLoading(!loading);
         let formData = new FormData();
         formData.append("name", info.name)
-        formData.append("address", info.name)
+        formData.append("email", info.email)
+        formData.append("coverLetter", info.coverLetter)
         formData.append("resume", file)
-        await axios.post(`https://jobportal-api.onrender.com/api/jobs/${id}/apply`, formData)
-          .then(res => {
-            console.log(res);
-            if (res.data.error) {
-              if (res.data.error === 'you have already applied!') {
-                setLoading(false);
-                swal("warning", res.data.error, "error")
-              } else if (res.data.error === 'deadline is over!') {
-                setLoading(false);
-                swal("warning", res.data.error, "error")
-              }
-              else {
-                setLoading(false);
-                swal("Application not submit!", res.data.message, "error")
-                setInfo({ ...info, errors: res.data.error });
-              }
-            } else if (res.data.data) {
+        console.log(file)
+        await axios.post(`https://jobportal-api.onrender.com/api/jobs/${id}/apply`, formData,{
+          headers: {
+            'Content-Type' : 'multipart/form-data'
+          }
+        }
+        ).then(res => {
+          console.log(res)
+          if (res.data.error) {
+            if (res.data.error === 'you have already applied!') {
               setLoading(false);
-              setInfo({
-                errors: ''
-              })
-              navigate('/home')
+              swal("warning", res.data.error, "error")
+            } else if (res.data.error === 'deadline is over!') {
+              setLoading(false);
+              swal("warning", res.data.error, "error")
             }
-          }).catch((err) => {
+            else {
+              setLoading(false);
+              swal("Application not submit!", res.data.message, "error")
+              setInfo({ ...info, errors: res.data.error });
+            }
+          } else if (res.data.data) {
             setLoading(false);
-            swal("warning", err.message, "error")
-          })
+            setInfo({
+              errors: ''
+            })
+            swal("Application not submit!", res.data.message, "success")
+            navigate('/dashboard/candidate/application')
+          }
+        })
+
+
+
+        // await axios.post(`https://jobportal-api.onrender.com/api/jobs/${id}/apply`, formData)
+        //   .then(res => {
+        //     console.log(res);
+        //     if (res.data.error) {
+        //       if (res.data.error === 'you have already applied!') {
+        //         setLoading(false);
+        //         swal("warning", res.data.error, "error")
+        //       } else if (res.data.error === 'deadline is over!') {
+        //         setLoading(false);
+        //         swal("warning", res.data.error, "error")
+        //       }
+        //       else {
+        //         setLoading(false);
+        //         swal("Application not submit!", res.data.message, "error")
+        //         setInfo({ ...info, errors: res.data.error });
+        //       }
+        //     } else if (res.data.data) {
+        //       setLoading(false);
+        //       setInfo({
+        //         errors: ''
+        //       })
+        //       navigate('/home')
+        //     }
+        //   }).catch((err) => {
+        //     setLoading(false);
+        //     swal("warning", err.message, "error")
+        //   })
       } catch (error) {
         setLoading(false);
-        swal("warning", error, "error")
+        swal("warning", error.message, "error")
       }
     } else {
       swal("warning", "upload your resume/cv", "error")
@@ -80,7 +119,7 @@ const JobApply = () => {
     <div className='container' style={{ minHeight: "77vh" }}>
       <div style={{ background: "#F5F7FC", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }} className="p-4 my-5 container">
         <h4 className=' fw-bold text-white text-center btn-primary py-3 bg-primary my-4' style={{ borderRadius: "5px", boxShadow: "rgba(0, 0, 0, 0.35) 0px 3px 5px" }}>Application for Job ID #{id.slice(-6)}</h4>
-        <span>{loading ? <p className='fw-bold text-danger text-center p-2' style={{ borderRadius: "5px", boxShadow: "rgba(0, 0, 0, 0.35) 0px 3px 5px" }}>Uploading... please wait</p>: null}</span>
+        <span>{loading ? <p className='fw-bold text-danger text-center p-2' style={{ borderRadius: "5px", boxShadow: "rgba(0, 0, 0, 0.35) 0px 3px 5px" }}>Uploading... please wait</p> : null}</span>
         <form onSubmit={submit}>
           {
             file ? <>
@@ -93,20 +132,20 @@ const JobApply = () => {
                   }}>{info.errors.name ? <span>{info.errors.name}</span> : null}</div>
                 </div>
                 <div className='col-6'>
-                  <label className='fw-bold mb-2'>Your Address</label>
-                  <input onChange={handelInfo} type="text" placeholder='Address' name="address" className='form-control mb-3' />
+                  <label className='fw-bold mb-2'>Your Email</label>
+                  <input onChange={handelInfo} type="text" placeholder='Email' name="email" className='form-control mb-3' />
                   <div style={{
                     color: "red", fontSize: "12px", fontWeight: "bold"
-                  }}>{info.errors.address ? <span>{info.errors.address}</span> : null}</div>
+                  }}>{info.errors.email ? <span>{info.errors.email}</span> : null}</div>
                 </div>
               </div>
 
               <label className='fw-bold mb-2'>Cover Letter</label>
 
-              <textarea rows="7" cols="50" onChange={handelInfo} type="text" placeholder='Cover Letter' name="letter" className='form-control  mb-3' />
+              <textarea rows="7" cols="50" onChange={handelInfo} type="text" placeholder='Cover Letter' name="coverLetter" className='form-control  mb-3' />
               <div className='mt-1' style={{
                 color: "red", fontSize: "12px", fontWeight: "bold"
-              }}>{info.errors.letter ? <span>{info.errors.letter}</span> : null}</div>
+              }}>{info.errors.letter ? <span>{info.errors.coverLetter}</span> : null}</div>
 
 
 

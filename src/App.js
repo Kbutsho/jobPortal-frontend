@@ -28,6 +28,7 @@ import PostJob from './components/Manager/PostJob';
 import DeleteJob from './components/Manager/DeleteJob';
 import AllApplication from './components/Manager/AllApplication';
 import DeleteApplication from './components/Manager/DeleteApplication';
+import Footer from './layouts/Footer/Footer';
 
 // https://jobportal-api.onrender.com/api
 // https://jobportal-api.onrender.com/api
@@ -80,6 +81,7 @@ const App = () => {
           <Route exact path="/" element={<Home />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <Footer/>
       </div>
   );
 };

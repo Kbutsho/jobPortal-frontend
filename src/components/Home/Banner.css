@@ -1,0 +1,12 @@
+.banner{
+    height: 90vh;
+    width: 100%;
+    position: relative;
+}
+.text{
+    height: 90vh;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}

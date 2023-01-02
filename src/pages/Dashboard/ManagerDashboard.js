@@ -22,7 +22,7 @@ const ManagerDashboard = () => {
     return (
         <div>
             <Navbar></Navbar>
-            <div className="container mb-5 d-flex justify-content-center align-items-center" style={{ minHeight: "75vh" }}>
+            <div className="container mb-5 d-flex justify-content-center align-items-center" style={{ minHeight: "80vh" }}>
                 <div>
                 <h4 className='fw-bold text-center bg-primary pt-4 pb-3 text-white' style={{  boxShadow: "rgba(0, 0, 0, 0.35) 0px 3px 5px",borderRadius: "5px" }}>Welcome to Dashboard</h4>
                 <div className="row">

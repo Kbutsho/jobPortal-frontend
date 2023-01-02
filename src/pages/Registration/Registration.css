@@ -1,0 +1,21 @@
+
+.signUp-form{
+    padding: 50px 30px;
+    transition: 0.3s;
+    box-shadow:  rgba(0, 0, 0, 0.35) 0px 5px 15px;box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+.main{
+    position: relative;
+    width: 100%;
+    background-size: cover;
+    background-image: url('../../assets/login-bg.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.loading{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}

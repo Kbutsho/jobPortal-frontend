@@ -46,12 +46,12 @@ const JobDetailsComponent = () => {
         }
     }
     return (
-        <div className='container mt-5 ' style={{ minHeight: "60vh", background: "#F5F7FC" }}>
+        <div className='container mt-5 ' style={{ minHeight: "650px", background: "#F5F7FC" }}>
             {
                 loading ? <div className="row">
-                    <div ref={ref} className="col-md-8 col-12 py-4 px-3" style={{ minHeight: "60vh" }}>
+                    <div ref={ref} className="col-md-8 col-12 py-4 px-3" style={{ minHeight: "650px" }}>
                         <h3><span className='fw-bold'>{job?.companyName}</span> job details.</h3>
-                        <p>{job.companyDetails}. {job?.jobDescription}.</p>
+                        <p>{job.companyDetails}</p>
                         <Table striped hover responsive className='table table-striped table-bordered table-hover' style={{ border: "1px solid black" }}>
                             <thead>
                                 <tr>
@@ -98,7 +98,7 @@ const JobDetailsComponent = () => {
                             </tbody>
                         </Table>
                     </div>
-                    <div className="col-md-4 col-12 py-5 px-3" style={{ minHeight: "60vh" }}>
+                    <div className="col-md-4 col-12 py-5 px-3" style={{ minHeight: "650px" }}>
 
                         <button onClick={apply} className='btn btn-primary px-5'>Apply Now</button>
                         <div className='deadline d-flex align-items-center my-4'>
@@ -131,8 +131,8 @@ const JobDetailsComponent = () => {
                         </div>
                         <ReactToPrint trigger={() => <button className='btn btn-info text-white px-5'>download </button>} content={() => ref.current} />
                     </div>
-                </div> : <div className='d-flex justify-content-center align-items-center' style={{ height: "65vh" }}>
-                    <h4 className='fw-bold text-uppercase text-danger d-flex'>Loading <PulseLoader style={{ margin: "3px 0 0 3px" }} color="red" size="8px" /><PulseLoader style={{ margin: "3px 0 0 0px" }} color="red" size="8px" /></h4>
+                </div> : <div className='d-flex justify-content-center align-items-center' style={{ height: "70vh" }}>
+                <h4 className='fw-bold text-danger d-flex'>Loading <PulseLoader style={{ margin: "3px 0 0 0px" }} color="red" size="8px" /> please wait<PulseLoader style={{ margin: "3px 0 0 3px" }} color="red" size="8px" /></h4>
                 </div>
             }
         </div>

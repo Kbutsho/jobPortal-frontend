@@ -37,13 +37,13 @@ const Job = () => {
         <div style={{ minHeight: "600px" }}>
             {
                 jobs.length === 0 ? <div className='d-flex justify-content-center align-items-center' style={{ height: "86vh" }}>
-                    <h4 className='fw-bold text-uppercase text-danger d-flex'>Loading <PulseLoader style={{ margin: "3px 0 0 3px" }} color="red" size="8px" /><PulseLoader style={{ margin: "3px 0 0 0px" }} color="red" size="8px" /></h4>
+                    <h4 className='fw-bold text-danger d-flex'>Loading <PulseLoader style={{ margin: "3px 0 0 0px" }} color="red" size="8px" /> please wait<PulseLoader style={{ margin: "3px 0 0 3px" }} color="red" size="8px" /></h4>
                 </div>
                     :
                     <div className="container mt-4">
-                        <h4 style={{ borderRadius: "5px"}} className='pt-4 fw-bold pb-3 text-uppercase text-center  text-white bg-primary'>Available job {jobs.length}</h4>
+                        {/* <h4 style={{ borderRadius: "5px"}} className='pt-4 fw-bold pb-3 text-uppercase   text-black text-center '>Available job {jobs.length}</h4> */}
                         <div className="job-area">
-                        <input type="text" className='form-control mt-4 mb-4 py-3' placeholder='Search by company name, job type, skills, position, salary or location.' value={value} onChange={filterData} style={{ }} />
+                        <input type="text" className='form-control mt-4 mb-4 py-3' placeholder='Search by company name, job type, job title, keywords, skills, position, salary or location.' value={value} onChange={filterData} style={{ border: "10px solid lightGray"}} />
                             <div className="row">
 
                             {

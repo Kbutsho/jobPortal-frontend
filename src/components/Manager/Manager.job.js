@@ -59,7 +59,7 @@ const postJob = ()=>{
     return (
         <div>
         <Navbar></Navbar>
-            <div className='container' style={{ minHeight: "600px" }}>
+            <div className='container' style={{ minHeight: "650px" }}>
             <div className="row">
                 <div className="col-md-3">
                     <Link to="/dashboard/manager/profile" className='text-decoration-none'>
@@ -145,8 +145,8 @@ const postJob = ()=>{
                         </div>
                     </div>
                
-                 : <div className='d-flex justify-content-center align-items-center' style={{ height: "86vh" }}>
-                    <h4 className='fw-bold text-uppercase text-danger d-flex'>Loading <PulseLoader style={{ margin: "3px 0 0 3px" }} color="red" size="8px" /><PulseLoader style={{ margin: "3px 0 0 0px" }} color="red" size="8px" /></h4>
+                 : <div className='d-flex justify-content-center align-items-center' style={{ height: "60vh" }}>
+                 <h4 className='fw-bold text-danger d-flex'>Loading <PulseLoader style={{ margin: "3px 0 0 0px" }} color="red" size="8px" /> please wait<PulseLoader style={{ margin: "3px 0 0 3px" }} color="red" size="8px" /></h4>
                 </div>     
             }
 

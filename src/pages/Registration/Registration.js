@@ -50,9 +50,6 @@ const Registration = () => {
                 }
             })
                 .then(res => {
-                    console.log(res)
-                    // setLoading(false)
-                    // console.log(res.data.error)
                     if (res.data.error) {
                         setLoading(false)
                         setData({ ...data, errors: res.data.error });
@@ -67,13 +64,13 @@ const Registration = () => {
                     }
                 })
         } catch (error) {
-            swal("warning", error.message, "warning")
+            swal("Database connection failed!", error.message, "warning")
         }
     }
     return (
-        <div>
-            <div className='main d-flex justify-content-center align-items-center ' style={{ minHeight: "100vh" }}>
-                <div className="signUp-form" style={loading ? { background: "#F5F7FC" } : { background: "rgba(0, 0, 0, 0.1)" }}>
+        <div >
+            <div className='main px-5  d-flex justify-content-center align-items-center ' style={{ minHeight: "100vh" }}>
+                <div className="signUp-form " style={loading ? { background: "#F5F7FC" } : { background: "rgba(0, 0, 0, 0.1)" }}>
                     <p className='text-center '><HiUserGroup size="60px" className='text-primary p-3' style={{ boxShadow: "inset rgba(0, 0, 0, 0.35) 0px 3px 5px", background: "white", borderRadius: "100%" }} /></p>
                     <h4 className='fw-bold text-dark mb-3 text-center'>REGISTRATION</h4>
                     <form onSubmit={submit}>

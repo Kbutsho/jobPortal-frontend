@@ -4,19 +4,6 @@
     /* font-family: 'Roboto', sans-serif;  */
 }
 
-/* input {
-    border-radius: 5px;
-    border: 0;
-    padding: 4px 6px;
-    color: black;
-    outline: 1px solid gray;
-    transition: 0.3s;
-}
-
-input:focus {
-    outline: 2px solid blue;
-} */
-
 .add-job, .edit-job{
     transition: 0.3s;
     box-shadow:  rgba(0, 0, 0, 0.35) 0px 5px 15px;box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;

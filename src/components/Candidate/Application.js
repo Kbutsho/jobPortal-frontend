@@ -5,6 +5,7 @@ import { Table } from 'react-bootstrap';
 import { AiFillAppstore } from 'react-icons/ai';
 import { ImProfile } from 'react-icons/im';
 import { Link, useNavigate } from 'react-router-dom';
+//import { RotateLoader } from 'react-spinners';
 import PulseLoader from 'react-spinners/PulseLoader';
 import { Modal, ModalBody, ModalFooter } from 'reactstrap';
 import swal from 'sweetalert';
@@ -15,17 +16,20 @@ const Application = () => {
     const [modal, setModal] = useState(false);
     const [loading, setLoading] = useState(false);
     useEffect(() => {
+        setLoading(!loading)
         axios.get('https://jobportal-api.onrender.com/api/candidate/application')
             .then(res => {
-                console.log(res)
+
                 if (res.data.data) {
+                    setLoading(false)
                     setApplication((res.data.data));
                 } else if (res.data.error) {
+                    setLoading(false)
                     navigate('/login')
                     swal("warning", res.data.error, "error")
                 }
             })
-    },[navigate])
+    }, [navigate, loading])
     const details = (id) => {
         navigate(`/dashboard/candidate/application/${id}/details`)
     }
@@ -77,72 +81,82 @@ const Application = () => {
                 </div>
             </div>
             {
-                application ? 
-               
-                application.length === 0 ? <div  className='d-flex justify-content-center align-items-center' style={{ minHeight: "500px" }}>
-                    <h4 className='fw-bold text-danger'>No Application found</h4>
-                </div> : 
-                <div className='d-flex justify-content-center' style={{ minHeight: "600px" }}>
-                        <div style={{ width: "100%" }}>
-                            <h4 className='text-center mb-5 mt-3 fw-bold bg-primary pb-3 pt-4 text-white' style={{ borderRadius: "5px" }}>Your applied total application {application.length}</h4>
-                            <Table responsive className='table table-bordered' style={{ border: '1px solid lightGray' }}>
-                                <thead style={{ background: 'lightGray' }}>
-                                    <tr className='text-center'>
-                                        <th>#</th>
-                                        <th>Job ID</th>
-                                        <th>Company ID</th>
-                                        <th>Your Name</th>
-                                        <th>Application Email</th>
-                                        <th>Application Date</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        application.map((app, index) =>
-                                            <tr key={app._id} className="text-center">
-                                                <td>{index + 1}</td>
-                                                <td>{app.jobId.slice(-6)}</td>
-                                                <td>{app.hiringManagerId.slice(-6)}</td>
-                                                <td>{app?.name}</td>
-                                                <td>{app.email}</td>
-                                                <td>{app.createdAt.toString().split(':')[0].split('T')[0].split("-").reverse().join('/')}</td>
-                                                <td className='fw-bold text-danger'>{app?.status}</td>
-                                                <td>
-                                                    <button onClick={() => details(app._id)} className='btn btn-sm btn-primary'>Details</button>
-                                                    <button onClick={() => edit(app._id)} className='btn btn-sm btn-success m-2 px-3'>Edit</button>
-                                                    <button onClick={toggleModal} className='btn btn-sm btn-danger'>Delete</button>
-                                                </td>
-                                                {modal ?
-                                                    <Modal isOpen={modal} className="modal-md d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
-                                                        <ModalBody className='py-5 text-center' >
-                                                            {loading ?
-                                                                <p className='fw-bold  text-danger'>deleting... please wait...</p> : <p className='fw-bold text-danger'>Are you sure want to delete your application?</p>
-                                                            }
+                application ?
 
-                                                        </ModalBody>
-                                                        <ModalFooter className='d-flex justify-content-between'>
-                                                            {
-                                                                loading ? null :
-                                                                    <><button onClick={toggleModal} className='btn btn-sm btn-primary px-4'>Close</button>
-                                                                        <button onClick={() => deleteApp(app?._id)} className='btn btn-sm btn-danger px-4'>Delete</button></>
-                                                            }
-                                                        </ModalFooter>
-                                                    </Modal>
-                                                    : null
-                                                }
-                                            </tr>
-                                        )
-                                    }
-                                </tbody>
-                            </Table>
-                        </div>
+                    application?.length === 0 ? <div className='d-flex justify-content-center align-items-center' style={{ minHeight: "500px" }}>
+                    <div className='d-flex justify-content-center align-items-center' style={{ height: "86vh" }}>
+                        <h4 className='fw-bold text-uppercase text-danger d-flex'>Loading <PulseLoader style={{ margin: "3px 0 0 3px" }} color="red" size="8px" /><PulseLoader style={{ margin: "3px 0 0 0px" }} color="red" size="8px" /></h4>
                     </div>
-               
-                 : <div className='d-flex justify-content-center align-items-center' style={{ height: "86vh" }}>
-                    <h4 className='fw-bold text-uppercase text-danger d-flex'>Loading <PulseLoader style={{ margin: "3px 0 0 3px" }} color="red" size="8px" /><PulseLoader style={{ margin: "3px 0 0 0px" }} color="red" size="8px" /></h4>
-                </div>     
+
+                    </div> :
+
+                        <div>
+                            <div className='d-flex justify-content-center' style={{ minHeight: "600px" }}>
+                                <div style={{ width: "100%" }}>
+                                    <h4 className='text-center mb-5 mt-3 fw-bold bg-primary pb-3 pt-4 text-white' style={{ borderRadius: "5px" }}>Your applied total application {application.length}</h4>
+                                    <Table responsive className='table table-bordered' style={{ border: '1px solid lightGray' }}>
+                                        <thead style={{ background: 'lightGray' }}>
+                                            <tr className='text-center'>
+                                                <th>#</th>
+                                                <th>Job ID</th>
+                                                <th>Company ID</th>
+                                                <th>Your Name</th>
+                                                <th>Application Email</th>
+                                                <th>Application Date</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {
+                                                application.map((app, index) =>
+                                                    <tr key={app._id} className="text-center">
+                                                        <td>{index + 1}</td>
+                                                        <td>{app.jobId.slice(-6)}</td>
+                                                        <td>{app.hiringManagerId.slice(-6)}</td>
+                                                        <td>{app?.name}</td>
+                                                        <td>{app.email}</td>
+                                                        <td>{app.createdAt.toString().split(':')[0].split('T')[0].split("-").reverse().join('/')}</td>
+                                                        <td className='fw-bold text-danger'>{app?.status}</td>
+                                                        <td>
+                                                            <button onClick={() => details(app._id)} className='btn btn-sm btn-primary'>Details</button>
+                                                            <button onClick={() => edit(app._id)} className='btn btn-sm btn-success m-2 px-3'>Edit</button>
+                                                            <button onClick={toggleModal} className='btn btn-sm btn-danger'>Delete</button>
+                                                        </td>
+                                                        {modal ?
+                                                            <Modal isOpen={modal} className="modal-md d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
+                                                                <ModalBody className='py-5 text-center' >
+                                                                    {loading ?
+                                                                        <p className='fw-bold  text-danger'>deleting... please wait...</p> : <p className='fw-bold text-danger'>Are you sure want to delete your application?</p>
+                                                                    }
+
+                                                                </ModalBody>
+                                                                <ModalFooter className='d-flex justify-content-between'>
+                                                                    {
+                                                                        loading ? null :
+                                                                            <><button onClick={toggleModal} className='btn btn-sm btn-primary px-4'>Close</button>
+                                                                                <button onClick={() => deleteApp(app?._id)} className='btn btn-sm btn-danger px-4'>Delete</button></>
+                                                                    }
+                                                                </ModalFooter>
+                                                            </Modal>
+                                                            : null
+                                                        }
+                                                    </tr>
+                                                )
+                                            }
+                                        </tbody>
+                                    </Table>
+                                </div>
+
+                            </div>
+
+
+                            
+                        </div>
+
+                    : <div className='d-flex justify-content-center align-items-center' style={{ height: "86vh" }}>
+                        <h4 className='fw-bold text-uppercase text-danger d-flex'>Loading <PulseLoader style={{ margin: "3px 0 0 3px" }} color="red" size="8px" /><PulseLoader style={{ margin: "3px 0 0 0px" }} color="red" size="8px" /></h4>
+                    </div>
             }
 
         </div>

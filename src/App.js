@@ -38,6 +38,8 @@ import Footer from './layouts/Footer/Footer';
 //     'Authorization': `Basic ${token}`
 //   },
 // })
+// 
+// https://jobportal-api.onrender.com/api
 let token = localStorage.getItem('token') 
 axios.defaults.baseURL = "https://jobportal-api.onrender.com/api";  
 //axios.defaults.headers.post['Content-Type'] = 'application/json';

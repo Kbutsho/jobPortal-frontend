@@ -49,7 +49,7 @@ const LoginForm = () => {
             }
         } catch (error) {
             setLoading(false);
-            swal("warning", error.message, "error");
+            swal("Database connection failed!", error.message, "error");
         }
     }
     const [showPassword, setShowPassword] = useState(false)
@@ -85,8 +85,6 @@ const LoginForm = () => {
                     </div>
                     <div className='mt-3'>
                         <button className={loading ? 'disabled btn btn-primary btn-sm w-100 fw-bold' : 'btn btn-primary btn-sm w-100 fw-bold'} type="submit">Login</button>
-
-                       
                     </div>
                 </form>
                 <div className='d-flex mt-3 justify-content-between'>
@@ -98,7 +96,6 @@ const LoginForm = () => {
             {
                 loading ? <div className='loading d-flex justify-content-center align-items-center' style={{ minHeight: "100vh" }}>
                     <RotateLoader color='yellow' className='mt-5' />
-
                 </div> : null
             }
         </div>

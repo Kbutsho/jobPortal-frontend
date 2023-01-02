@@ -39,19 +39,6 @@ const ManagerJob = () => {
     }
     const deleteApp =  (id) => {
         navigate(`/dashboard/manager/job/${id}/delete`)
-        // try {
-        //     setLoading(!loading)
-        //     axios.delete(`https://jobportal-api.onrender.com/api/jobs/${id}`)
-        //         .then(res => {
-        //             setLoading(false)
-                    
-        //             window.location.reload(false);
-        //             swal("success", res.data.message, "success")
-        //         })
-        // } catch (error) {
-        //     setLoading(false)
-        //     swal("warning", error, "error")
-        // }
     }
 const postJob = ()=>{
     navigate(`/dashboard/manager/job/post`)
@@ -146,7 +133,7 @@ const postJob = ()=>{
                     </div>
                
                  : <div className='d-flex justify-content-center align-items-center' style={{ height: "60vh" }}>
-                 <h4 className='fw-bold text-danger d-flex'>Loading <PulseLoader style={{ margin: "3px 0 0 0px" }} color="red" size="8px" /> please wait<PulseLoader style={{ margin: "3px 0 0 3px" }} color="red" size="8px" /></h4>
+                 <h4 className='fw-bold text-danger d-flex'>fetching data <PulseLoader style={{ margin: "3px 0 0 0px" }} color="red" size="8px" /> please wait<PulseLoader style={{ margin: "3px 0 0 3px" }} color="red" size="8px" /></h4>
                 </div>     
             }
 

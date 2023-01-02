@@ -78,38 +78,9 @@ const JobApply = () => {
           }
         })
 
-
-
-        // await axios.post(`https://jobportal-api.onrender.com/api/jobs/${id}/apply`, formData)
-        //   .then(res => {
-        //     console.log(res);
-        //     if (res.data.error) {
-        //       if (res.data.error === 'you have already applied!') {
-        //         setLoading(false);
-        //         swal("warning", res.data.error, "error")
-        //       } else if (res.data.error === 'deadline is over!') {
-        //         setLoading(false);
-        //         swal("warning", res.data.error, "error")
-        //       }
-        //       else {
-        //         setLoading(false);
-        //         swal("Application not submit!", res.data.message, "error")
-        //         setInfo({ ...info, errors: res.data.error });
-        //       }
-        //     } else if (res.data.data) {
-        //       setLoading(false);
-        //       setInfo({
-        //         errors: ''
-        //       })
-        //       navigate('/home')
-        //     }
-        //   }).catch((err) => {
-        //     setLoading(false);
-        //     swal("warning", err.message, "error")
-        //   })
       } catch (error) {
         setLoading(false);
-        swal("warning", error.message, "error")
+        swal("Database connection error!", error.message, "error")
       }
     } else {
       swal("warning", "upload your resume/cv", "error")

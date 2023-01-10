@@ -68,7 +68,7 @@ const Job = () => {
         <div style={{ minHeight: "600px" }}>
             {
                 jobs.length === 0 ? <div className='d-flex justify-content-center align-items-center' style={{ height: "86vh" }}>
-                    <h4 className='fw-bold text-danger d-flex'>Fetching data. please wait<PulseLoader style={{ margin: "3px 0 0 3px" }} color="red" size="8px" /></h4>
+                    <h4 className='fw-bold text-danger d-flex'>Loading data. please wait<PulseLoader style={{ margin: "3px 0 0 3px" }} color="red" size="8px" /></h4>
                 </div>
                     :
                    

@@ -132,7 +132,7 @@ const JobDetailsComponent = () => {
                         <ReactToPrint trigger={() => <button className='btn btn-success text-white px-5'>download </button>} content={() => ref.current} />
                     </div>
                 </div> : <div className='d-flex justify-content-center align-items-center' style={{ height: "70vh" }}>
-                <h4 className='fw-bold text-danger d-flex'>fetching data <PulseLoader style={{ margin: "3px 0 0 0px" }} color="red" size="8px" /> please wait<PulseLoader style={{ margin: "3px 0 0 3px" }} color="red" size="8px" /></h4>
+                <h4 className='fw-bold text-danger d-flex'>Loading<PulseLoader style={{ margin: "3px 0 0 3px" }} color="red" size="8px" /></h4>
                 </div>
             }
         </div>

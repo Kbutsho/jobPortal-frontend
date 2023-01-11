@@ -60,6 +60,7 @@ const JobCard = (props) => {
                         <h6><span className='fw-bold'>Salary</span> {salary}</h6>
                         {/* <h6><span className='fw-bold'>Vacancy</span> {vacancy}</h6> */}
                         <div className='d-flex justify-content-between mt-3'>
+                           
                             <span onClick={() => details(_id)} className='btn btn-sm btn-success text-white fw-bold pt-2 px-2'>Details <MdReportGmailerrorred size="20" className='mb-1' /></span>
                             <span onClick={() => apply(_id)} className='btn btn-sm btn-primary fw-bold pt-2 px-2'>Apply <FaExternalLinkAlt className='mb-1' /></span>
                         </div>

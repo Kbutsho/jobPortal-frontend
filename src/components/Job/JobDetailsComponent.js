@@ -1,4 +1,4 @@
-import axios from 'axios';
+//import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import swal from 'sweetalert';
@@ -7,17 +7,18 @@ import { MdOutlineDateRange, MdWorkOutline } from 'react-icons/md';
 import { Table } from 'react-bootstrap';
 import { PulseLoader } from 'react-spinners';
 import ReactToPrint from 'react-to-print';
+import data from '../../data/data';
 
 const JobDetailsComponent = () => {
     const ref = useRef();
     const { id } = useParams()
     const navigate = useNavigate()
-    const [loading, setLoading] = useState(true);
+    const [loading] = useState(true);
     const [job, setJob] = useState({});
-    useEffect(() => {
-        getJobDetails()
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    // useEffect(() => {
+    //     getJobDetails()
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [])
     const apply = ()=>{
         const candidate = localStorage.getItem('role');
         if (candidate === 'candidate') {
@@ -28,24 +29,31 @@ const JobDetailsComponent = () => {
             navigate('/login');
         }
     }
-    const getJobDetails = async () => {
-        try {
-            setLoading(!loading);
-            await axios.get(`https://jobportal-api.onrender.com/api/jobs/${id}`)
-                .then(res => {
-                    if (res.data.error) {
-                        setLoading(true);
-                        swal(res.data.error, res.data.message, "error")
-                    } else if (res.data.data) {
-                        setLoading(true);
-                        setJob(res.data.data)
-                    }
-                })
-        } catch (error) {
-            swal(error.message, error.name, "error")
-        }
-    }
+    // const getJobDetails = async () => {
+    //     try {
+    //         setLoading(!loading);
+    //         await axios.get(`https://jobportal-api.onrender.com/api/jobs/${id}`)
+    //             .then(res => {
+    //                 if (res.data.error) {
+    //                     setLoading(true);
+    //                     swal(res.data.error, res.data.message, "error")
+    //                 } else if (res.data.data) {
+    //                     setLoading(true);
+    //                     setJob(res.data.data)
+    //                 }
+    //             })
+    //     } catch (error) {
+    //         swal(error.message, error.name, "error")
+    //     }
+    // }
+    
+
+      useEffect(()=>{
+       setJob(Object.values(data).find(a=> a._id === id ))
+      },[id])
+   
     return (
+        
         <div className='container mt-5 ' style={{ minHeight: "650px", background: "#F5F7FC" }}>
             {
                 loading ? <div className="row">
@@ -92,7 +100,8 @@ const JobDetailsComponent = () => {
                                 </tr>
                                 <tr>
                                     <td>Application</td>
-                                    <td>Send your cv to <span className='fw-bold'>{job?.hiringManager?.email}</span>
+                                    <td>Send your cv to <span className='fw-bold'>kbutsho@gmail.com</span>
+                                    {/* <td>Send your cv to <span className='fw-bold'>{job?.hiringManager?.email}</span> */}
                                     </td>
                                 </tr>
                             </tbody>

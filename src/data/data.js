@@ -19,6 +19,25 @@ const Data = [
         "updatedAt": "2023-01-01"
     },
     {
+        "_id": "63b2d25f58339cc789a34222",
+        "name": "Software Engineer",
+        "hiringManager": "63b2cf2d58339cc789a33972",
+        "companyName": "Zainik Lab",
+        "companyDetails": "Zainik  Limited is the leading IT/ITeS solution provider company in Bangladesh.",
+        "jobDescription": "Full time Software Engineer",
+        "jobResponsibilities": "Dedicated teamwork and punctual",
+        "additionalRequirements": "HTML, CSS",
+        "salary": 30000,
+        "location": "Khulna", "jobType": "full-time",
+        "vacancy": 10,
+        "benefits": "half yearly bonus", "Skills": "C++, Laravel, Javascript, PHP",
+        "deadline": "2023-05-01",
+        "appliedCandidate": [],
+        "applicationId": [],
+        "createdAt": "2023-01-01",
+        "updatedAt": "2023-01-01"
+    },
+    {
         "_id": "63b2d4e858339cc789a34211",
         "name": "Frontend Engineer",
         "hiringManager": "63b2cf2d58339cc789a33972",
